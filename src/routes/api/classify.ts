@@ -23,7 +23,7 @@ export const Route = createFileRoute("/api/classify")({
         if (!image || !image.startsWith("data:image/") || image.length > 8_000_000) {
           return Response.json({ error: "Please upload a valid image (under ~6MB)." }, { status: 400 });
         }
-        const key = process.env.LOVABLE_API_KEY;
+        const key = process.env["LOVABLE_API_KEY"];
         if (!key) return Response.json({ error: "AI is not configured." }, { status: 500 });
 
         const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {

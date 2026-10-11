@@ -91,7 +91,7 @@ function Index() {
 
   const counts = Object.keys(META).map((k) => ({ k, n: logs.filter((l) => l.category === k).length }));
   const max = Math.max(1, ...counts.map((c) => c.n));
-  const m = result ? META[result.category] ?? META.General : null;
+  const m = result ? META[result.category] ?? META["General"]! : null;
 
   return (
     <main className="min-h-screen eco-bg">
@@ -156,8 +156,8 @@ function Index() {
             <div className="space-y-2">
               {counts.map(({ k, n }) => (
                 <div key={k} className="flex items-center gap-3 text-sm">
-                  <span className="w-24">{META[k].emoji} {k}</span>
-                  <div className="flex-1 h-4 rounded-full bg-muted overflow-hidden"><div className={`h-full rounded-full ${META[k].cls}`} style={{ width: `${(n / max) * 100}%` }} /></div>
+                  <span className="w-24">{META[k]!.emoji} {k}</span>
+                  <div className="flex-1 h-4 rounded-full bg-muted overflow-hidden"><div className={`h-full rounded-full ${META[k]!.cls}`} style={{ width: `${(n / max) * 100}%` }} /></div>
                   <span className="w-6 text-right font-semibold">{n}</span>
                 </div>
               ))}
